@@ -7,7 +7,7 @@ const logger = require("pino")()
 app.listen(port)
 app.use(express.json())
 
-const applicationRoutes =  require('./routes/application');
+const applicationRoutes = require('./routes/application');
 
 app.use('/application', applicationRoutes);
 

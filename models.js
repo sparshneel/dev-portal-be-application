@@ -4,7 +4,7 @@ const {DataTypes} = require("sequelize");
 //models
 const ApplicationModel = connection.define("application", {
 
-    id : {
+    id: {
         type: DataTypes.UUID,
         allowNull: false,
         require: true,
@@ -26,10 +26,7 @@ const ApplicationModel = connection.define("application", {
     owner: {
         type: DataTypes.STRING,
         allowNull: false,
-        require: true,
-        association: {
-
-        }
+        require: true
     },
 
     api_products: {
@@ -63,9 +60,51 @@ const ApplicationModel = connection.define("application", {
     }
 });
 
+const CredentialModel = connection.define("credential", {
+
+    id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        require: true,
+        primaryKey: true
+    },
+
+    type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        require: true
+    },
+
+    application_id: {
+        type: DataTypes.UUID,
+        allowNull: true,
+        require: false
+    },
+
+    is_active: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        require: true,
+        default: 1
+    },
+
+    created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        require: true
+    },
+
+    updated_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        require: true
+    }
+});
+
 // associations
 
 
-module.exports ={
-    ApplicationModel
+module.exports = {
+    ApplicationModel,
+    CredentialModel
 }

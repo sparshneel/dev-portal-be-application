@@ -1,4 +1,4 @@
-const sequelize= require('sequelize')
+const sequelize = require('sequelize')
 const PropertiesReader = require('properties-reader')
 const configProperties = PropertiesReader("C:\\Users\\Sarvagram\\WebstormProjects\\dev-portal-application\\application.properties")
 const connection = new sequelize.Sequelize(
@@ -11,6 +11,6 @@ const connection = new sequelize.Sequelize(
     }
 )
 
-module.exports={
+module.exports = {
     connection
 }
