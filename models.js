@@ -7,7 +7,8 @@ const ApplicationModel = connection.define("application", {
     id : {
         type: DataTypes.UUID,
         allowNull: false,
-        require: true
+        require: true,
+        primaryKey: true
     },
 
     name: {
@@ -37,13 +38,13 @@ const ApplicationModel = connection.define("application", {
         require: true
     },
 
-    created_at:{
+    created_at: {
         type: DataTypes.DATE,
         allowNull: false,
         require: true
     },
 
-    updated_at:{
+    updated_at: {
         type: DataTypes.DATE,
         allowNull: false,
         require: true
@@ -53,6 +54,12 @@ const ApplicationModel = connection.define("application", {
         type: DataTypes.UUID,
         allowNull: false,
         require: true
+    },
+
+    custom_attributes: {
+        type: DataTypes.JSON,
+        allowNull: true,
+        require: false
     }
 });
 

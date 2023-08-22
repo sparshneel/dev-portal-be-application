@@ -1,24 +1,18 @@
 const express = require('express')
 const app = express()
 const port = 8080
-const PropertiesReader = require('properties-reader')
-const {connection} = require("./dbConnection/connection");
-const logger = require("pino")();
-const router = app.Router()
+const {connection} = require("./dbConnection/connection")
+const logger = require("pino")()
 
 app.listen(port)
+app.use(express.json())
 
-const configProperties = PropertiesReader('./config/application.properties')
+const applicationRoutes =  require('./routes/application');
 
-app.routes.use('/application',require('./routes/application.js'))
+app.use('/application', applicationRoutes);
 
 connection.authenticate().then(() => {
     logger.info('Connection has been established successfully.');
 }).catch((error) => {
     logger.error('Unable to connect to the database: ', error);
 });
-
-module.exports = {
-    router,
-    configProperties
-};
