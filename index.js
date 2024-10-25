@@ -1,18 +1,26 @@
-const express = require('express')
-const app = express()
-const port = 8080
-const {connection} = require("./dbConnection/connection")
-const logger = require("pino")()
+const app = require("express")();
+const mongoose = require("mongoose");
+require("dotenv").config();
+const port=process.env.port
+const {getApplications, createApplication, getApplication, deleteApplication} = require("./routes/applicationRoutes")
 
-app.listen(port)
-app.use(express.json())
+mongoose.connect(process.env.mongodb_url)
+        .then(console.log("connected to the mongodb database"))
+        .catch(error => {
+            console.log("error connecting to the database, cause: ", error);
+        });
 
-const applicationRoutes = require('./routes/application');
 
-app.use('/application', applicationRoutes);
+app.get("/v1/application", getApplications)
+app.get("/v1/application/:id", getApplication)
+app.post("/v1/application", createApplication)
+app.delete("/v1/application/:id", deleteApplication)
 
-connection.authenticate().then(() => {
-    logger.info('Connection has been established successfully.');
-}).catch((error) => {
-    logger.error('Unable to connect to the database: ', error);
-});
+
+app.listen(port, () => {
+    try {
+        console.log("server is running on port: ", port)
+    } catch (error) {
+        console.log("server could not start up error: {}", error)
+    }
+})
