@@ -1,6 +1,6 @@
 const  mongoose = require("mongoose")
 
-const CredentialModel = new mongoose.Schema("credential", {
+const CredentialModel = new mongoose.Schema ({
 
     id: {
         type: String,
