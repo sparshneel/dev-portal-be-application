@@ -17,7 +17,7 @@
     "express-validator": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.2",
-    "mysql2": "^3.6.0",
+    "mysql2": "^3.9.8",
     "pino": "^8.15.0",
     "uuid": "^9.0.0"
   }
