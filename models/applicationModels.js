@@ -9,7 +9,7 @@ const applicationModel = new mongoose.Schema({
         type: String,
         required: true
     },
-    apiProdcuts: {
+    api_products: {
         type: mongoose.Schema.Types.Array,
         required: true
     },
@@ -21,14 +21,14 @@ const applicationModel = new mongoose.Schema({
         type: String,
         required: true
     },
-    customeAttributes: {
+    custom_attributes: {
         type: mongoose.Schema.Types.Map
     },
-    createdAt: {
+    created_at: {
         type: Date,
         required: true
     },
-    updatedAt: {
+    updated_at: {
         type: Date,
         required: true
     },
