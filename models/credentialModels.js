@@ -1,10 +1,12 @@
 const  mongoose = require("mongoose")
+const uuid = require("uuid/v4");
 
 const CredentialModel = new mongoose.Schema ({
 
     id: {
         type: String,
-        require: true
+        require: true,
+        default: uuid.v4().toString()
     },
 
     type: {

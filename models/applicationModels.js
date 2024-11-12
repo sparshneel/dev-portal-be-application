@@ -1,9 +1,11 @@
 const  mongoose = require("mongoose")
+const uuid = require("uuid/v4")
 
 const applicationModel = new mongoose.Schema({
     id: {
         type: String,
-        required: true
+        required: true,
+        default: uuid.v4().toString()
     },
     type: {
         type: String,
@@ -15,7 +17,7 @@ const applicationModel = new mongoose.Schema({
     },
     credential: {
         type: String,
-        required: true
+        required: false
     },
     owner: {
         type: String,
