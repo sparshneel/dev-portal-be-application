@@ -1,5 +1,5 @@
 const  mongoose = require("mongoose")
-const uuid = require("uuid/v4");
+const uuid = require("uuid");
 
 const CredentialModel = new mongoose.Schema ({
 
@@ -27,12 +27,14 @@ const CredentialModel = new mongoose.Schema ({
 
     created_at: {
         type: Date,
-        require: true
+        require: false,
+        default: Date.now
     },
 
     updated_at: {
         type: Date,
-        require: true
+        require: false,
+        default: Date.now
     }
 });
 

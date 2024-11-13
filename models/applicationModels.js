@@ -1,5 +1,5 @@
 const  mongoose = require("mongoose")
-const uuid = require("uuid/v4")
+const uuid = require("uuid")
 
 const applicationModel = new mongoose.Schema({
     id: {
@@ -28,11 +28,13 @@ const applicationModel = new mongoose.Schema({
     },
     created_at: {
         type: Date,
-        required: true
+        required: false,
+        default: Date.now
     },
     updated_at: {
         type: Date,
-        required: true
+        required: false,
+        default: Date.now
     },
 });
 
