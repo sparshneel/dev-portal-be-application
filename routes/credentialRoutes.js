@@ -19,7 +19,7 @@ exports.getCredential = async (request, response)  => {
 }
 
 exports.deleteCredential = async (request, response)  => {
-    const credential = await credentialModel.findByIdAndUpdate(request.params.id);
+    await credentialModel.findByIdAndDelete(request.params.id);
     response.status(204);
 }
 

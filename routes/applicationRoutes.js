@@ -18,7 +18,7 @@ exports.getApplication = async (request, response)  => {
 }
 
 exports.deleteApplication = async (request, response)  => {
-    const application = await applicationModel.findByIdAndDelete(request.params.id)
+    await applicationModel.findByIdAndDelete(request.params.id)
     response.status(204);
 }
 
