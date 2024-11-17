@@ -4,8 +4,8 @@ require("dotenv").config();
 const port=process.env.port
 const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
-const {getApplications, createApplication, getApplication, deleteApplication} = require("./routes/applicationRoutes")
-const {getApplicationCredentials, deleteCredential, getCredential, generateApplicationCredential} = require("./routes/credentialRoutes")
+const {getApplications, createApplication, getApplication, deleteApplication} = require("./routes/applicationRoutes");
+const {getApplicationCredentials, deleteCredential, getCredential, generateApplicationCredential} = require("./routes/credentialRoutes");
 
 mongoose.connect(process.env.mongodb_url)
         .then(console.log("connected to the mongodb database"))
@@ -22,14 +22,16 @@ app.delete("/v1/application/:id", deleteApplication)
 
 app.get("/v1/credential/:id", getCredential)
 app.get("/v1/application/:id/credential", getApplicationCredentials)
-app.post("/v1/application/:appId/credential/:id", generateApplicationCredential)
+app.post("/v1/application/:appId/credential", generateApplicationCredential)
 app.delete("/v1/credential/:id", deleteCredential)
+
 
 app.post("/v1/login", (request,response) => {
    const user = '{"username" : request.body.user}';
    const token = jwt.sign(user,process.env.APP_LOGIN_SECRET)
     response.status(201).json({"token" : token});
 });
+
 
 
 app.listen(port, () => {

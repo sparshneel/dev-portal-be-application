@@ -1,43 +1,46 @@
-const  mongoose = require("mongoose")
 const uuid = require("uuid");
+const Sequelize = require("sequelize");
+const sequelize =  new Sequelize('application_creds', 'root', 'my-secret-pw', {
+    host: 'localhost',
+    dialect: 'mysql'
+});
 
-const CredentialModel = new mongoose.Schema ({
+sequelize.authenticate().then(() => {
+    console.log('Connection has been established successfully.');
+}).catch((error) => {
+    console.error('Unable to connect to the database: ', error);
+});
 
+
+const CredentialModel = sequelize.define("credential",{
     id: {
-        type: String,
-        require: true,
-        default: uuid.v4().toString()
+        type: Sequelize.STRING,
+        defaultValue: uuid.v4().toString(),
+        primaryKey: true
     },
 
     type: {
-        type: String,
+        type: Sequelize.STRING,
         require: true
     },
 
     application_id: {
-        type: String,
+        type: Sequelize.STRING,
         require: false
     },
 
     is_active: {
-        type: Boolean,
+        type: Sequelize.BOOLEAN,
         require: true,
-        default: 1
-    },
-
-    created_at: {
-        type: Date,
-        require: false,
-        default: Date.now
-    },
-
-    updated_at: {
-        type: Date,
-        require: false,
-        default: Date.now
+        defaultValue: 1
     }
 });
 
-const credential = mongoose.model("Credential", CredentialModel);
+sequelize.sync().then(() => {
+    console.log('Tables created successfully!');
+}).catch((error) => {
+    console.error('Unable to create tables : ', error);
+});
 
-module.exports = credential;
+
+module.exports = CredentialModel;
