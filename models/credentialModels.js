@@ -19,6 +19,16 @@ const CredentialModel = sequelize.define("credential",{
         primaryKey: true
     },
 
+    key: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+
+    secretKey: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+
     type: {
         type: Sequelize.STRING,
         require: true

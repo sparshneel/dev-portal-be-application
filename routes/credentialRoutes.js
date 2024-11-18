@@ -1,5 +1,6 @@
 const credentialModel = require("../models/credentialModels")
 const uuid = require("uuid");
+const secretGenerator = require("../credential/credential");
 
 exports.getApplicationCredentials = async (request, response)  => {
     const credentials = await credentialModel.findAll({
@@ -12,7 +13,9 @@ exports.generateApplicationCredential = async (request, response) => {
     const credntialRequest = {
         application_id: request.params.appId,
         id: uuid.v4().toString(),
-        type: request.body.type
+        type: request.body.type,
+        key: uuid.v4().toString(),
+        secretKey: secretGenerator.generate_secret(32)
     }
     const credential = await credentialModel.create(credntialRequest);
     response.status(201).json(credential);
