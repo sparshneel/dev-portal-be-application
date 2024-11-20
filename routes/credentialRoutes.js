@@ -10,14 +10,14 @@ exports.getApplicationCredentials = async (request, response)  => {
 }
 
 exports.generateApplicationCredential = async (request, response) => {
-    const credntialRequest = {
+    const credentialRequest = {
         application_id: request.params.appId,
         id: uuid.v4().toString(),
         type: request.body.type,
-        key: uuid.v4().toString(),
+        key: uuid.v4().toString().toUpperCase(),
         secretKey: secretGenerator.generate_secret(32)
     }
-    const credential = await credentialModel.create(credntialRequest);
+    const credential = await credentialModel.create(credentialRequest);
     response.status(201).json(credential);
 }
 
