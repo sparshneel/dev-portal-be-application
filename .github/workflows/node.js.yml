@@ -34,6 +34,7 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - name: Check out the repo
@@ -50,6 +51,6 @@ jobs:
         with:
           context: .
           push: 'true'
-          tags: dev-portal/application:latest, dev-ortal/application:${{ github.run_number }}
+          tags: sparshneel/dev-portal-application:latest, sparshneel/dev-portal-application:${{ github.run_number }}
 
 
