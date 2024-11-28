@@ -1,14 +1,17 @@
 FROM node:20-alpine
-LABEL authors="sparshneel"
 
-WORKDIR /app
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
-COPY . /app
+WORKDIR /home/node/app
+
+COPY package*.json ./
+
+USER node
 
 RUN npm install
 
-RUN npm run build
+COPY --chown=node:node . .
 
-EXPOSE 80
+EXPOSE 8080
 
-RUN npm run start
+CMD [ "node", "index.js" ]
