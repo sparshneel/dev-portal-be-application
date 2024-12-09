@@ -2,11 +2,10 @@ const application = require('../models/applicationModels');
 const {MongoDBContainer} = require('@testcontainers/mongodb')
 const mongoose = require('mongoose')
 const uuid = require('uuid')
-const {request} = require('supertest')
 
 describe('Dev Portal Application Integration Tests', () => {
     let mongoDBContainer;
-    
+
     beforeAll(async () => {
         mongoDBContainer = await new MongoDBContainer("mongo:6.0.1").start();
 
