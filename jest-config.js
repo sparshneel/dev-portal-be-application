@@ -1,0 +1,1 @@
+testPathDirs = ['/integration-tests'];

@@ -16,8 +16,8 @@ const credentialValidation = [
 ];
 
 function validateToken(token) {
-   if(jwt.verify(token, process.env.JWT_SECRET === true)) return 1;
-   else return 0;
+    if (jwt.verify(token, process.env.JWT_SECRET === true)) return 1;
+    else return 0;
 }
 
 module.exports = {
