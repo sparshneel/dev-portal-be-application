@@ -14,7 +14,7 @@ describe('Dev Portal Application Integration Tests', () => {
             .catch(error => {
                 console.log("error connecting to the mongodb database", error);
             })
-    });
+    }, 150000);
 
     test("create application", async () => {
         const app = {
