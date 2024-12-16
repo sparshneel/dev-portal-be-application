@@ -25,13 +25,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
+        working-directory: application/build
       - run: npm run build --if-present
+        working-directory: application/build
       - run: npm test -- --coverage
+        working-directory: application/build
       - name: Archive coverage data
         uses: actions/upload-artifact@v4.0.0
         with:
             name: jest-coverage-data
-            path: .qodana/code-coverage
+            path: application/build/coverage
       - name: Qodana Checks
         uses: JetBrains/qodana-action@v2024.2
         env:
