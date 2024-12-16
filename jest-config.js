@@ -1,1 +1,2 @@
-testPathDirs = ['/integration-tests'];
+testPathDirs = ['/integration-tests']
+coverageReporters = ['lcov']
