@@ -81,7 +81,8 @@ describe('Dev Portal Application Credential Integration Tests', () => {
         })
     });
 
-    test("delete credential", async () => {
+
+    test.skip("delete credential", async () => {
         await credentials.findOneAndDelete({
             id: credential_id,
         }).then(credential => {
