@@ -48,7 +48,7 @@ jobs:
       - name: publish coverage results on the repo
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          coverage-file: ./coverage/coverage-final.json
+          coverage-file: ./coverage/lcov-report/coverage-final.json
 
       - name: Qodana Checks
         uses: JetBrains/qodana-action@v2024.2
