@@ -47,11 +47,10 @@ jobs:
           path: ./coverage
       - name: publish coverage results on the repo
         uses: ArtiomTr/jest-coverage-report-action@v2
-      - name: Qodana Checks
-        uses: JetBrains/qodana-action@v2024.2
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
         env:
-          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
-          QODANA_ENDPOINT: "https://qodana.cloud"
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   publish:
     runs-on: ubuntu-latest
