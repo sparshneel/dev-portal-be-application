@@ -47,10 +47,6 @@ jobs:
           path: ./coverage
       - name: publish coverage results on the repo
         uses: ArtiomTr/jest-coverage-report-action@v2
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   publish:
     runs-on: ubuntu-latest
