@@ -47,6 +47,17 @@ jobs:
           path: ./coverage
       - name: publish coverage results on the repo
         uses: ArtiomTr/jest-coverage-report-action@v2
+      - name: Run Codacy Analysis CLI
+        uses: codacy/codacy-analysis-cli-action@master
+        with:
+          output: results.sarif
+          format: sarif
+          gh-code-scanning-compat: true
+      # Upload the SARIF file generated in the previous step
+      - name: Upload SARIF results file
+        uses: github/codeql-action/upload-sarif@main
+        with:
+          sarif_file: results.sarif
 
   publish:
     runs-on: ubuntu-latest
