@@ -47,6 +47,11 @@ jobs:
           path: ./coverage
       - name: publish coverage results on the repo
         uses: ArtiomTr/jest-coverage-report-action@v2
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@v1.3.0
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: ./coverage/lcov.info
 
   publish:
     runs-on: ubuntu-latest
@@ -68,5 +73,3 @@ jobs:
           context: .
           push: 'true'
           tags: sparshneel/dev-portal-application:latest, sparshneel/dev-portal-application:${{ github.run_number }}
-
-
