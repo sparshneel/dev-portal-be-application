@@ -45,8 +45,6 @@ jobs:
         with:
           name: jest-coverage-data
           path: ./coverage
-      - name: publish coverage results on the repo
-        uses: ArtiomTr/jest-coverage-report-action@v2
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@v1.3.0
         with:
