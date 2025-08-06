@@ -72,4 +72,4 @@ jobs:
         with:
           context: .
           push: 'true'
-          tags: sparshneel/${{jobs.publish.environment}}/dev-portal-application:latest, sparshneel/${{jobs.publish.environment}}/dev-portal-application:${{ github.run_number }}
+          tags: sparshneel/${{ github.ref_name }}/dev-portal-application:latest, sparshneel/${{ github.ref_name }}/dev-portal-application:${{ github.run_number }}
