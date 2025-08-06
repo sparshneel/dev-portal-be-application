@@ -5,13 +5,13 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "dev", "stage" ]
+    branches: [ "dev"]
   pull_request:
-    branches: [ "dev", "stage" ]
+    branches: [ "dev" ]
 
 jobs:
   build:
-    environment: ${{github.ref_name}}
+    environment: dev
     runs-on: ubuntu-latest
 
     strategy:
@@ -30,7 +30,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     needs: build
-    environment: ${{github.ref_name}}
+    environment: dev
     strategy:
       matrix:
         node-version: [ 20.x ]
@@ -56,7 +56,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: [ build,test ]
-    environment: ${{github.ref_name}}
+    environment: dev
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -72,4 +72,4 @@ jobs:
         with:
           context: .
           push: 'true'
-          tags: sparshneel/${{ github.ref_name }}/dev-portal-application:latest, sparshneel/${{ github.ref_name }}/dev-portal-application:${{ github.run_number }}
+          tags: sparshneel/dev/dev-portal-application:latest, sparshneel/dev/dev-portal-application:${{ github.run_number }}
